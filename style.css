@@ -1,0 +1,188 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #111; /* Darkened for higher contrast */
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    color: #fff;
+}
+
+h1 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    text-shadow: 3px 3px #000;
+    text-align: center;
+}
+
+#game-container {
+    position: relative;
+    width: 800px;
+    height: 400px;
+    background: linear-gradient(to bottom, #2c3e50 60%, #1e3f20 60%); /* Dynamic level-based bg shifts via JS */
+    border: 4px solid #333;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+    transition: background 1s ease;
+}
+
+/* UI Container */
+#ui-container {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 5;
+}
+
+.ui-box {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 8px 15px;
+    border-radius: 4px;
+    border: 1px solid #556B2F;
+}
+
+/* Animated Sun */
+.sun {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    width: 60px;
+    height: 60px;
+    background: #FFD700;
+    border-radius: 50%;
+    box-shadow: 0 0 20px #FFD700;
+}
+
+.animate-sun {
+    animation: pulseSun 4s infinite ease-in-out;
+}
+
+@keyframes pulseSun {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.15); opacity: 1; box-shadow: 0 0 35px #FF8C00; }
+}
+
+/* Clouds with real drifting animations */
+.cloud {
+    position: absolute;
+    background: #fff;
+    border-radius: 20px;
+    opacity: 0.4;
+}
+.cloud-one { width: 100px; height: 30px; top: 40px; left: -100px; animation: drift 20s linear infinite; }
+.cloud-two { width: 140px; height: 40px; top: 80px; left: -150px; animation: drift 14s linear infinite 5s; }
+
+@keyframes drift {
+    from { left: -150px; }
+    to { left: 850px; }
+}
+
+/* The Avocado Player */
+#player {
+    position: absolute;
+    width: 40px;
+    height: 50px;
+    background: #4A5D23;
+    border-radius: 50% 50% 40% 40%;
+    left: 100px;
+    bottom: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#player::before {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 30px;
+    background: #8FBC8F;
+    border-radius: 50%;
+}
+
+#player::after {
+    content: '🥑';
+    font-size: 20px;
+    position: absolute;
+    z-index: 2;
+}
+
+/* Spinning / Moving Obstacles */
+.obstacle {
+    position: absolute;
+    bottom: 160px;
+    width: 30px;
+    height: 60px;
+    background: repeating-linear-gradient(45deg, #a0522d, #a0522d 5px, #8b4513 5px, #8b4513 10px);
+    border: 2px solid #5c2c16;
+}
+.obstacle::after {
+    content: '🪜';
+    font-size: 24px;
+    position: absolute;
+    top: -10px;
+    left: 2px;
+}
+
+.projectile {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    font-size: 25px;
+    line-height: 30px;
+    text-align: center;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Game Over Screen */
+#game-over {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.95);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    border: 3px solid #ff4444;
+    z-index: 10;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #4AF;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+button:hover { background: #39D; }
+
+.instructions {
+    margin-top: 15px;
+    color: #888;
+    text-align: center;
+}

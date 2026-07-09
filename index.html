@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avocado's Nature Crisis</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico"> <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>An Existential Avocado in the Woods</h1>
+    
+    <div id="game-container">
+        <div class="sun animate-sun"></div>
+        <div class="cloud cloud-one"></div>
+        <div class="cloud cloud-two"></div>
+        
+        <div id="ui-container">
+            <div class="ui-box">Sanity: <span id="score">0</span></div>
+            <div class="ui-box">Level: <span id="level-display">1</span></div>
+        </div>
+
+        <div id="player"></div>
+        
+        <div id="game-over">
+            <h2>Game Over!</h2>
+            <p id="death-reason">You became toast.</p>
+            <p>Final Sanity Score: <span id="final-score">0</span></p>
+            <button onclick="resetGame()">Try Again</button>
+        </div>
+    </div>
+
+    <div class="instructions">
+        Press <strong>SPACEBAR</strong> or <strong>UP ARROW</strong> to jump.<br>
+        Current Atmosphere: <span id="tempo-status" style="color: #4AF;">Chill Beats</span>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="bg-music.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
